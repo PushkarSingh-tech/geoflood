@@ -1,0 +1,38 @@
+[
+  {
+    "feature": "rainfall_24h",
+    "importance": 0.19072633772734104
+  },
+  {
+    "feature": "elevation",
+    "importance": 0.14204713558973275
+  },
+  {
+    "feature": "impervious_pct",
+    "importance": 0.04293587054557909
+  },
+  {
+    "feature": "rainfall_1h",
+    "importance": 0.01159502919281108
+  },
+  {
+    "feature": "historical_flood_count",
+    "importance": 0.003875391319012422
+  },
+  {
+    "feature": "rain_intensity_ratio",
+    "importance": 0.003625954778534446
+  },
+  {
+    "feature": "slope",
+    "importance": 0.0007306351843942461
+  },
+  {
+    "feature": "rainfall_3h",
+    "importance": -0.007722965776790347
+  },
+  {
+    "feature": "drainage_density",
+    "importance": -0.00959905817873562
+  }
+]

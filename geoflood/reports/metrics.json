@@ -1,0 +1,66 @@
+{
+  "models": {
+    "dummy_prior": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "pr_auc": 0.3548387096774194,
+      "brier": 0.28553204810078264,
+      "confusion_matrix": {
+        "tn": 100,
+        "fp": 0,
+        "fn": 55,
+        "tp": 0
+      },
+      "threshold": 0.5,
+      "roc_auc": 0.5
+    },
+    "logistic_regression": {
+      "precision": 0.5280898876404494,
+      "recall": 0.8545454545454545,
+      "f1": 0.6527777777777778,
+      "pr_auc": 0.7353629151241973,
+      "brier": 0.22195393386691534,
+      "confusion_matrix": {
+        "tn": 58,
+        "fp": 42,
+        "fn": 8,
+        "tp": 47
+      },
+      "threshold": 0.5,
+      "roc_auc": 0.8001818181818181
+    },
+    "hist_gradient_boosting": {
+      "precision": 0.5918367346938775,
+      "recall": 0.5272727272727272,
+      "f1": 0.5576923076923077,
+      "pr_auc": 0.6600852385142948,
+      "brier": 0.22685755926982745,
+      "confusion_matrix": {
+        "tn": 80,
+        "fp": 20,
+        "fn": 26,
+        "tp": 29
+      },
+      "threshold": 0.5,
+      "roc_auc": 0.7116363636363636,
+      "calibration": {
+        "mean_predicted": [
+          0.009,
+          0.054,
+          0.238,
+          0.549,
+          0.906
+        ],
+        "fraction_positive": [
+          0.226,
+          0.194,
+          0.29,
+          0.419,
+          0.645
+        ]
+      }
+    }
+  },
+  "validation": "geographic (train: southern 70% by latitude, test: northern 30%)"
+}

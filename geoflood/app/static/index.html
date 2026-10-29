@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GeoFlood AI</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<aside class="sidebar">
+  <h1>GeoFlood AI</h1>
+  <p class="tag">Road waterlogging risk</p>
+  <nav>
+    <button data-view="dashboard" class="active">Dashboard</button>
+    <button data-view="map">Risk map</button>
+    <button data-view="predict">Predict &amp; scenario</button>
+    <button data-view="model">Model &amp; data</button>
+  </nav>
+  <p class="foot">Educational project. Not an official flood warning system.</p>
+</aside>
+
+<main>
+  <div id="banner" class="banner" hidden></div>
+  <div id="error" class="error" hidden></div>
+
+  <section id="view-dashboard" class="view">
+    <h2>Dashboard</h2>
+    <div class="kpis" id="kpis"><p class="muted">Loading…</p></div>
+    <div class="grid2">
+      <div class="panel"><h3>Risk distribution</h3><div class="chartbox"><canvas id="distChart"></canvas></div></div>
+      <div class="panel"><h3>Highest-risk roads</h3>
+        <table id="hrTable"><thead><tr><th>Road</th><th>Score</th><th>Category</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-map" class="view" hidden>
+    <h2>Risk map</h2>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search road ID (e.g. SYN-0042)" maxlength="50">
+      <button id="searchBtn">Find</button>
+      <span id="cats"></span>
+      <label>Min score <input id="minp" type="range" min="0" max="1" step="0.05" value="0"> <output id="minpOut">0.00</output></label>
+      <label><input id="tiles" type="checkbox"> Basemap tiles (needs internet)</label>
+      <label id="srcWrap" hidden>Colors from
+        <select id="colorSrc"><option value="base">Model on dataset</option><option value="scenario">Scenario</option></select></label>
+    </div>
+    <div id="map"></div>
+    <div id="mapNote" class="muted"></div>
+  </section>
+
+  <section id="view-predict" class="view" hidden>
+    <h2>Predict &amp; scenario</h2>
+    <div class="grid2">
+      <div class="panel">
+        <h3>Single prediction</h3>
+        <p class="muted">Leave a field empty to use the training median.</p>
+        <form id="predForm" class="form"></form>
+        <button id="predBtn" class="primary">Predict</button>
+        <div id="predOut" class="result"></div>
+      </div>
+      <div class="panel">
+        <h3>Rainfall scenario (all roads)</h3>
+        <div class="caution">Hypothetical what-if, <b>not a forecast</b>. Rainfall changes for every road while terrain and drainage stay fixed, which may not be physically realistic.</div>
+        <form id="scForm" class="form">
+          <label>Rainfall 1h (mm)<input name="rainfall_1h" type="number" step="any" min="0" max="200" value="30" required></label>
+          <label>Rainfall 3h (mm)<input name="rainfall_3h" type="number" step="any" min="0" max="400" value="60" required></label>
+          <label>Rainfall 24h (mm)<input name="rainfall_24h" type="number" step="any" min="0" max="1000" value="140" required></label>
+        </form>
+        <button id="scBtn" class="primary">Run scenario</button>
+        <div id="scOut" class="result"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-model" class="view" hidden>
+    <h2>Model &amp; data</h2>
+    <div class="grid2">
+      <div class="panel"><h3>Model</h3><dl id="modelMeta"></dl></div>
+      <div class="panel"><h3>Feature importance</h3><div class="chartbox"><canvas id="impChart"></canvas></div></div>
+    </div>
+    <div class="panel"><h3>Held-out evaluation</h3>
+      <p class="muted" id="valText"></p>
+      <table id="metTable"><thead><tr><th>Model</th><th>PR-AUC</th><th>Precision</th><th>Recall</th><th>F1</th><th>Brier</th></tr></thead><tbody></tbody></table>
+    </div>
+  </section>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

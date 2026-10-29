@@ -1,0 +1,46 @@
+{
+  "trained_at": "2026-10-29 03:58:24 UTC",
+  "primary_model": "hist_gradient_boosting",
+  "features": [
+    "rainfall_1h",
+    "rainfall_3h",
+    "rainfall_24h",
+    "elevation",
+    "slope",
+    "drainage_density",
+    "impervious_pct",
+    "historical_flood_count",
+    "rain_intensity_ratio"
+  ],
+  "target": "flooded",
+  "target_meaning": "binary: waterlogging observed (1) or not (0)",
+  "validation": "geographic (train: southern 70% by latitude, test: northern 30%)",
+  "n_train": 325,
+  "n_test": 155,
+  "positive_rate_train": 0.11692307692307692,
+  "class_imbalance_handling": "balanced class weights",
+  "data_mode": "SYNTHETIC_DEMO",
+  "risk_bins": [
+    {
+      "below": 0.25,
+      "category": "Low"
+    },
+    {
+      "below": 0.5,
+      "category": "Moderate"
+    },
+    {
+      "below": 0.75,
+      "category": "High"
+    },
+    {
+      "below": 1.01,
+      "category": "Very High"
+    }
+  ],
+  "notes": [
+    "Held-out metrics come from the split above; the deployed model is refit on all labelled rows.",
+    "Score estimates the probability of the label's outcome, not flood depth or severity.",
+    "No separate validation set was used; no hyperparameter search was performed."
+  ]
+}
